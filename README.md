@@ -59,12 +59,30 @@ Their **Tracker** is their own custom ConvLSTM and it leverages the separation o
 
 - Refer to network diagrams in research paper [3].
 
+### Approach 4
+
+For this custom approach, there are 2 DNNs that come from research paper [4].
+
+- First a Faster RCNN based on VGG-16 network takes a laparascopic surgical video. Then Region Proposal Network (RPN) shares convolutional feattures with object detection networks. For each input image, the RPN generates region proposals to contain an object and features pooled over these regions before being passed to a final classification and bounding box refinement network. The output is spatial bounding box positions of detected surgical tools in the video frame.
+
+- Refer to network diagrams in research paper [4].
+
+
 ## Dataset Links
 
 TODO: Describe the dataset
 
-- Download [Surgical Tool Localization in Endoscopic Videos Dataset](https://surgtoolloc.grand-challenge.org/data-download/) from Endoscopic Vision Challenge
+- Download [Surgical Tool Localization in Endoscopic Videos 109GB Dataset](https://surgtoolloc.grand-challenge.org/data-download/) of 24K Video Clips from Endoscopic Vision Challenge 2022
     - [Surgical Tool Endoscopic Video Dataset Description](https://surgtoolloc.grand-challenge.org/data/)
+    - 
+
+
+- Download [2016 M2CAI Tool Presence Detection Challenge](https://ai.stanford.edu/~syyeung/tooldetection.html) which includes a m2cai16-tool dataset
+    - m2cai16-tool consists of 15 videos total recorded at 25 fps of cholecystectomy procedures performed at the University Hospital of Strasbourg France where each video is labeled with binary annotations indicating tool presence
+    - From m2cai-tool dataset, first 10 videos are used for training RCNN model and 11-15 videos are used for testing that model
+    - To the best of Stanford's team knowledge, there was no such dataset that currently exists for real-world laparosopic surgical videos. Thus, from the m2cai16-tool dataset, they created m2cai16-tool-locations with spatial annotations of the tools.
+    - For their m2cai16-tool dataset, they label 2532 of the frames under supervision and spot-checking from a surgeon, with the coordinates of spatial bounding boxes around the tools. They usee 50%, 30% and 20% for training, validation and test spliits. The 2532 frames were selected from among the 23,000 total frames. 
+        - Again these 23,000 frames were from videos whose durations range from 20 to 75 minutes downsampled to 1 fps for processing and labeled with binary annotations indicating presence or absence of seven surgical tools: grasper, bipolar, hook, scissors, clip applier, irrigator and specimen bag.
 
 ## Research Publication Links
 
@@ -75,3 +93,8 @@ TODO: Describe the dataset
 - [3] Chinedu Innocent Nwoye, Didier Mutter, Jacques Marescaux, Nicolas Padoy. **Weakly Supervised Convolutional LSTM Approach for Tool Tracking in Laparoscopic Video.** International Journal of Computer Assisted Radiology and Surgery, Springer Verlag, 2019: https://arxiv.org/pdf/1812.01366v2.pdf
     - YouTube Demo Video 1: [Weakly Supervised Convolutional LSTM Approach for Tool Tracking in Laparoscopic Videos](https://www.youtube.com/watch?v=vnMwlS5tvHE)
     - YouTube Demo Video 2: [Weakly Supervised Convolutional LSTM Approach for Tool Tracking (Test at 25 FPS)](https://www.youtube.com/watch?v=SNhd1yzOe50)
+
+- [4] A. Jin, et al., "**Tool Detection and Operative Skill Assessment in Surgical Videos Using Region-Based Convolutional Neural Networks**," in 2018 IEEE Winter Conference on Applications of Computer Vision (WACV), Lake Tahoe, NV, USA, 2018 pp. 691-699.
+doi: 10.1109/WACV.2018.00081
+keywords: {tools;videos;task analysis;training;minimally invasive surgery;convolutional neural networks}
+url: https://doi.ieeecomputersociety.org/10.1109/WACV.2018.00081
